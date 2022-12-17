@@ -78,10 +78,10 @@ export const AuthContextProvider = (props) => {
     logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 
-  // if tokenData is not null and user login, set timer due to default firebase expire duration (1 hour) to remove token from local storage
+  // if tokenData is not null and user in login state, update timer to remove token from local storage
   useEffect(() => {
     if (tokenData) {
-      console.log("time left to expire token: ", tokenData.duration);
+      console.log("time left to expire token:", tokenData.duration);
       logoutTimer = setTimeout(logoutHandler, tokenData.duration);
     }
   }, [tokenData, logoutHandler]);
